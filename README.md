@@ -9,7 +9,7 @@ Source codes for experiments with simulated data reported in the "Experimental A
 * `mastery_methods.py`  Implementation of several simple mastery criteria.
 * `umap_experiments.py`  Execution of experiments reported in the paper.
 
-### Citation
+### Bibtex
 
 ```
 @InProceedings{umap2017-mastery,
