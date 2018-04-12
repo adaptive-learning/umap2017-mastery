@@ -12,8 +12,8 @@ THRESHOLDS = [0.3, 0.5, 0.6, 0.7, 0.75, 0.8, 0.85, 0.9, 0.92, 0.95, 0.97, 0.98, 
 # valuse used in grid search for the best value of N for NCC method
 N_THRESHOLDS = list(range(1, 25))
 # separator for output
-SEP = "\t"   
-# 6 fixed colors from the viridis colormap 
+SEP = "\t"
+# 6 fixed colors from the viridis colormap
 viridis6 = [[0.565498, 0.84243, 0.262877], [0.20803, 0.718701, 0.472873], [0.127568, 0.566949, 0.550556], [0.190631, 0.407061, 0.556089], [0.267968, 0.223549, 0.512008], [0.267004, 0.004874, 0.329415]]
 
 
@@ -29,7 +29,7 @@ def find_best_params(method, data, candidates, metric=wMAD):
         else:
             md = method(p)
         results.append((metric(data.true_mastery, md.detected_mastery), p))
-    return sorted(results)[0][1]  
+    return sorted(results)[0][1]
 
 
 def rand_jitter(arr):
@@ -58,8 +58,8 @@ def print_bkt_ncc_comparison(scenario_name, students):
           round(wMAD(test.true_mastery, bkt_test.detected_mastery), 2),
           round(spearmanr(bkt_test.detected_mastery, ncc_test.detected_mastery)[0], 2),
           sep=SEP)
-    
-    
+
+
 def bkt_ncc_comparison_scenarios(students):
     print("sc", "NCC-n", "BKT-t", "NCC m", "BKT m", "Corr", sep=SEP)
     for scenario_name in sorted(scenarios):
@@ -91,7 +91,7 @@ def print_ema_ncc_comparison(scenario_name, students):
 
 
 def ema_ncc_comparison_scenarios(students):
-    print("sc", "NCC-n", "EMA-a",  "EMA-t", "NCC m", "EMA m", sep=SEP)
+    print("sc", "NCC-n", "EMA95-a", "EMA-a",  "EMA-t", "NCC m", "EMA95 m", "EMA m", sep=SEP)
     for scenario_name in sorted(scenarios):
         print_ema_ncc_comparison(scenario_name, students)
 
@@ -124,9 +124,9 @@ def effort_score_graph_scenario(scenario_name, students):
     efforts, scores = zip(*effort_score_results)
     colors = sns.color_palette()
     plt.plot(efforts, scores, linestyle=get_linestyle(scenario_name),
-             color=colors[int(scenario_name[1]) - 1], label=scenario_name, alpha=0.7)  
+             color=colors[int(scenario_name[1]) - 1], label=scenario_name, alpha=0.7)
     for i in range(len(thresholds)):
-        plt.scatter(efforts[i], scores[i], s=60, marker=(i+3, 1), color=viridis6[i])  
+        plt.scatter(efforts[i], scores[i], s=60, marker=(i+3, 1), color=viridis6[i])
 
 
 def effort_score_graphs(students):
